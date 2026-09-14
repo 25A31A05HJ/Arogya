@@ -2,7 +2,7 @@
  * api.js — thin fetch wrapper shared by every page.
  * Change API_BASE if the backend runs somewhere other than localhost:5000.
  */
-const API_BASE = "http://localhost:5000/api";
+   const API_BASE = "https://arogya-9.onrender.com/api";
 
 function getToken() {
   return localStorage.getItem("aarogyaai_token");
