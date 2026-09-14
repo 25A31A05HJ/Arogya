@@ -1,6 +1,7 @@
 ## 🩺 AarogyaAI – AI-Powered Personal Wellness Assistant
 
 🔗 **Live Demo:** https://arogya9.netlify.app/
+
 🌱 **AarogyaAI** is an AI-powered wellness platform designed to help users monitor and improve their daily lifestyle habits through **personalized insights, wellness scoring, recommendations, and an interactive AI assistant**.
 
 ### ✨ Key Features
