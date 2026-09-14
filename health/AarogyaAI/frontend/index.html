@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AarogyaAI — Sign in</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1>🩺 AarogyaAI</h1>
+    <p class="subtitle">Your personal AI wellness assistant</p>
+
+    <div id="errorBanner" class="error-banner" style="display:none;"></div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" required />
+      </div>
+      <button type="submit" class="btn">Log In</button>
+    </form>
+    <p class="switch-link">
+      New here? <a href="#" id="showSignup">Create an account</a>
+    </p>
+
+    <!-- SIGNUP FORM (hidden by default) -->
+    <form id="signupForm" style="display:none;">
+      <div class="field">
+        <label>Full name</label>
+        <input type="text" id="signupName" required />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="signupEmail" required />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="signupPassword" required />
+      </div>
+      <div class="field">
+        <label>Wellness goal</label>
+        <select id="signupGoal">
+          <option>Improve fitness</option>
+          <option>Improve sleep</option>
+          <option>Reduce stress</option>
+          <option>Eat healthier</option>
+          <option>General wellness</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+    <p class="switch-link" id="backToLoginWrap" style="display:none;">
+      Already have an account? <a href="#" id="showLogin">Log in</a>
+    </p>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

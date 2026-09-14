@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AarogyaAI — Reminders</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="navbar">
+  <div class="brand">🩺 AarogyaAI</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="chat.html">AI Chat</a>
+    <a href="reminders.html">Reminders</a>
+    <a href="report.html">Weekly Report</a>
+    <a href="#" id="logoutLink">Log out</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h2>🔔 Smart Reminders</h2>
+
+  <div class="card">
+    <form class="log-form-row" id="reminderForm">
+      <div class="field">
+        <label>Category</label>
+        <select id="reminderCategory">
+          <option value="water">💧 Water</option>
+          <option value="exercise">🏃 Exercise</option>
+          <option value="sleep">😴 Sleep routine</option>
+          <option value="appointment">📅 Doctor appointment</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field" style="flex:2;">
+        <label>Title</label>
+        <input type="text" id="reminderTitle" placeholder="e.g. 20-minute walk" required />
+      </div>
+      <div class="field">
+        <label>Time</label>
+        <input type="time" id="reminderTime" required />
+      </div>
+      <button class="btn small" type="submit">Add reminder</button>
+    </form>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div id="reminderList"></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/reminders.js"></script>
+</body>
+</html>

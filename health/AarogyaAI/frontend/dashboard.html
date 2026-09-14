@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AarogyaAI — Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="brand">🩺 AarogyaAI</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="chat.html">AI Chat</a>
+    <a href="reminders.html">Reminders</a>
+    <a href="report.html">Weekly Report</a>
+    <a href="#" id="logoutLink">Log out</a>
+  </nav>
+</div>
+
+<div class="container">
+  <div id="alertBox" class="alert-banner" style="display:none;"></div>
+
+  <h2 id="greeting">My Wellness Dashboard</h2>
+
+  <div class="grid">
+    <div class="card score-card">
+      <div class="score-label">WELLNESS SCORE</div>
+      <div class="score-value" id="scoreValue">--</div>
+      <div class="score-label">out of 100</div>
+    </div>
+    <div class="card">
+      <h3>😴 Sleep</h3>
+      <span class="stat-value" id="sleepValue">0</span><span class="stat-unit">hrs</span>
+    </div>
+    <div class="card">
+      <h3>💧 Water</h3>
+      <span class="stat-value" id="waterValue">0</span><span class="stat-unit">L</span>
+    </div>
+    <div class="card">
+      <h3>🏃 Exercise</h3>
+      <span class="stat-value" id="exerciseValue">0</span><span class="stat-unit">min</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>Score Breakdown</h3>
+    <div id="breakdownBars"></div>
+    <div class="insight-box" id="insightText">Loading insight…</div>
+  </div>
+
+  <div class="section-title">AI Recommendations</div>
+  <ul class="rec-list" id="recList"></ul>
+
+  <div class="section-title">Log Today's Activity</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="sleep">Sleep</button>
+    <button class="tab-btn" data-tab="water">Water</button>
+    <button class="tab-btn" data-tab="exercise">Exercise</button>
+    <button class="tab-btn" data-tab="meal">Food</button>
+    <button class="tab-btn" data-tab="stress">Stress / Symptoms</button>
+  </div>
+
+  <div class="card">
+    <!-- SLEEP -->
+    <form class="log-form-row log-tab" id="sleepTab">
+      <div class="field">
+        <label>Hours slept last night</label>
+        <input type="number" id="sleepHours" step="0.5" min="0" max="16" placeholder="e.g. 6.5" required />
+      </div>
+      <button class="btn small" type="submit">Save</button>
+    </form>
+
+    <!-- WATER -->
+    <form class="log-form-row log-tab" id="waterTab" style="display:none;">
+      <div class="field">
+        <label>Add water intake (ml)</label>
+        <input type="number" id="waterMl" min="0" step="50" placeholder="e.g. 300" required />
+      </div>
+      <button class="btn small" type="submit">Add</button>
+    </form>
+
+    <!-- EXERCISE -->
+    <form class="log-form-row log-tab" id="exerciseTab" style="display:none;">
+      <div class="field">
+        <label>Activity</label>
+        <select id="exerciseActivity">
+          <option>Walking</option><option>Running</option><option>Cycling</option>
+          <option>Yoga</option><option>Gym</option><option>Sports</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Minutes</label>
+        <input type="number" id="exerciseMinutes" min="0" placeholder="e.g. 20" required />
+      </div>
+      <button class="btn small" type="submit">Add</button>
+    </form>
+    <ul class="list-simple" id="exerciseList"></ul>
+
+    <!-- MEAL -->
+    <form class="log-form-row log-tab" id="mealTab" style="display:none;">
+      <div class="field">
+        <label>Meal</label>
+        <select id="mealType">
+          <option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option>
+        </select>
+      </div>
+      <div class="field" style="flex:2;">
+        <label>What did you eat?</label>
+        <input type="text" id="mealDescription" placeholder="e.g. Idli + Sambar" required />
+      </div>
+      <div class="field">
+        <label>How healthy overall today?</label>
+        <select id="nutritionRating">
+          <option value="">— optional —</option>
+          <option>Poor</option><option>Fair</option><option>Good</option><option>Excellent</option>
+        </select>
+      </div>
+      <button class="btn small" type="submit">Add</button>
+    </form>
+    <ul class="list-simple" id="mealList"></ul>
+
+    <!-- STRESS / SYMPTOMS -->
+    <form class="log-form-row log-tab" id="stressTab" style="display:none; flex-direction: column; align-items: stretch;">
+      <div class="field">
+        <label>How are you feeling today?</label>
+        <select id="stressLevel">
+          <option value="Great">😊 Great</option>
+          <option value="Good">🙂 Good</option>
+          <option value="Okay" selected>😐 Okay</option>
+          <option value="Stressed">😟 Stressed</option>
+          <option value="Very low">😢 Very low</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Anything on your mind? (optional)</label>
+        <textarea id="moodNote" placeholder="e.g. stressed about exams tomorrow"></textarea>
+      </div>
+      <div class="field">
+        <label>Any symptoms to note? (optional, not a diagnosis)</label>
+        <textarea id="symptomsText" placeholder="e.g. mild headache, feeling tired"></textarea>
+      </div>
+      <button class="btn small" type="submit" style="width: 140px;">Save</button>
+    </form>
+  </div>
+
+  <div class="section-title">7-Day Trend</div>
+  <div class="card">
+    <canvas id="trendChart" height="110"></canvas>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

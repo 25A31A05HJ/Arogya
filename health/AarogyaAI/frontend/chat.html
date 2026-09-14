@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AarogyaAI — AI Chat</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="navbar">
+  <div class="brand">🩺 AarogyaAI</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="chat.html">AI Chat</a>
+    <a href="reminders.html">Reminders</a>
+    <a href="report.html">Weekly Report</a>
+    <a href="#" id="logoutLink">Log out</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h2>AI Wellness Chat</h2>
+  <p class="muted">
+    This assistant gives general wellness guidance only — it does not diagnose
+    conditions or prescribe treatment. For anything serious or persistent, please
+    consult a qualified healthcare professional.
+  </p>
+
+  <div class="chat-window" id="chatWindow"></div>
+
+  <div class="suggestions">
+    <button class="suggestion-chip">I slept only 5 hours, what should I do?</button>
+    <button class="suggestion-chip">Give me a simple plan for tomorrow</button>
+    <button class="suggestion-chip">Suggest a healthy breakfast</button>
+    <button class="suggestion-chip">I'm feeling stressed about exams</button>
+  </div>
+
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Type a message…" />
+    <button class="btn" id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>

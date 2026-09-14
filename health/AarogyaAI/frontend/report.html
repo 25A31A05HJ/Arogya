@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AarogyaAI — Weekly Report</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="navbar">
+  <div class="brand">🩺 AarogyaAI</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="chat.html">AI Chat</a>
+    <a href="reminders.html">Reminders</a>
+    <a href="report.html">Weekly Report</a>
+    <a href="#" id="logoutLink">Log out</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h2>📈 Weekly Wellness Report</h2>
+  <div class="grid">
+    <div class="card"><h3>Avg Sleep</h3><span class="stat-value" id="avgSleep">--</span><span class="stat-unit">hrs/day</span></div>
+    <div class="card"><h3>Total Exercise</h3><span class="stat-value" id="totalExercise">--</span><span class="stat-unit">min</span></div>
+    <div class="card"><h3>Avg Water</h3><span class="stat-value" id="avgWater">--</span><span class="stat-unit">L/day</span></div>
+    <div class="card"><h3>Avg Wellness Score</h3><span class="stat-value" id="avgScore">--</span><span class="stat-unit">/100</span></div>
+  </div>
+
+  <div class="insight-box" id="reportSummary" style="margin-top:20px;">Loading…</div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  requireAuth();
+  document.getElementById("logoutLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    clearSession();
+    window.location.href = "index.html";
+  });
+
+  (async () => {
+    try {
+      const report = await apiRequest("/reports/weekly");
+      document.getElementById("avgSleep").textContent = report.avg_sleep_hours ?? 0;
+      document.getElementById("totalExercise").textContent = report.total_exercise_minutes ?? 0;
+      document.getElementById("avgWater").textContent = report.avg_water_liters ?? 0;
+      document.getElementById("avgScore").textContent = report.avg_wellness_score ?? 0;
+      document.getElementById("reportSummary").textContent = report.summary;
+    } catch (err) {
+      document.getElementById("reportSummary").textContent = "Could not load report: " + err.message;
+    }
+  })();
+</script>
+</body>
+</html>
